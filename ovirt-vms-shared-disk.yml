@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: 3rhvm-emeasancatlingpart-onaqawxu.srv.ravcloud.com
 
   tasks:
     - name: Create shared disk
