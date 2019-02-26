@@ -1,5 +1,5 @@
 ---
-- hosts: 3rhvm-emeasancatlingpart-onaqawxu.srv.ravcloud.com
+- hosts: rhvm.example.com
 
   tasks:
     - name: Create shared disk
