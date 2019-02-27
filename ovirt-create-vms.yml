@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+
+  tasks:
+    - block:
+
+      - name: Obtain SSO token
+        ovirt_auth:
+          url: "{{ ovirt_url }}"
+          insecure: true
+
+      - name: Create VM
+        ovirt_vms:
+          auth: "{{ ovirt_auth }}"
+          state: present
+          name: "{{ vm_name }}"
+          template: "{{ vm_template }}"
+          cluster: "{{ cluster }}"
+
+      always:
+        - name: Revoke SSO token
+          ovirt_auth:
+            state: absent
+            ovirt_auth: "{{ ovirt_auth }}"
