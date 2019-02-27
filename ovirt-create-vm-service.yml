@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: false
+  # gather_facts: false
   connection: local
 
   vars:
@@ -68,7 +68,7 @@
 
     - debug: var=new_vm    
 
-    - set_fact: new_vm_uuid="{{ new_vm.ansible_facts.id }}"
+    - set_fact: new_vm_uuid="{{ new_vm.id }}"
 
     - debug: var=new_vm_uuid
 
