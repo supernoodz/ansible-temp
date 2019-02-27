@@ -109,7 +109,7 @@
       delay: "{{retry_interval}}"
     - debug: var=task_result
     
-    - set_fact: find_vm_url="{{ manageiq.api_url }}/api/vms?expand=resources&attributes=href,uid_ems&filter[]=uid_ems='{{ new_vm_uuid }}'"
+    - set_fact: find_vm_url="{{ api_uri }}/api/vms?expand=resources&attributes=href,uid_ems&filter[]=uid_ems='{{ new_vm_uuid }}'"
 
     - debug: var=find_vm_url
 
