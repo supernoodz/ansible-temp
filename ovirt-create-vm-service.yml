@@ -4,7 +4,6 @@
   connection: local
 
   vars:
-    api_uri: "https://cf46ui/api"
     provider_id: "21000000000002"
     max_retries: 9
     retry_interval: 20
@@ -19,8 +18,8 @@
         url: "{{ api_uri }}/auth"
         method: GET
         validate_certs: no
-        user: admin
-        password: smartvm
+        user: "{{ cf_user }}"
+        password: "{{ cf_pw }}"
         headers:
           accept: "application/json"
         return_content: yes
