@@ -4,22 +4,11 @@
   connection: local
 
   vars:
-    # provider_id: "21000000000002"
     max_retries: 9
     retry_interval: 20
-    # vm_name: test003
-    # vm_template: RHEL6
-    # cluster: Default
-    # api_uri: https://cf46ui
-    # cf_user: admin
-    # cf_pw: r3dh4t1!
-    # ovirt_url: https://rhvm.example.com/ovirt-engine/api
 
   tasks:
     - debug: var=service_id
-    # - debug: var=vm_name
-    # - debug: var=vm_template
-    # - debug: var=cluster
 
     - name: Get CloudForms auth_token
       uri:
@@ -34,8 +23,6 @@
       register: uri_output
     
     - set_fact: auth_token="{{ uri_output.json.auth_token }}"
-
-    # - debug: var=auth_token
 
     - name: Set the Provider URL
       set_fact:
