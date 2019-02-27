@@ -17,9 +17,9 @@
 
   tasks:
     - debug: var=service_id
-    - debug: var=vm_name
-    - debug: var=vm_template
-    - debug: var=cluster
+    # - debug: var=vm_name
+    # - debug: var=vm_template
+    # - debug: var=cluster
 
     - name: Get CloudForms auth_token
       uri:
@@ -33,21 +33,17 @@
         return_content: yes
       register: uri_output
     
-    - set_fact: manageiq="{{ uri_output.json }}"
+    - set_fact: auth_token="{{ uri_output.json.auth_token }}"
 
-    - debug: var=manageiq
-
-    - debug: var=manageiq.api_url
-    - debug: var=manageiq.api_token
-    - debug: var=manageiq.service
+    # - debug: var=auth_token
 
     - name: Set the Provider URL
       set_fact:
-        provider_url: "{{ manageiq.api_url }}/api/providers/{{ provider_id }}"
+        provider_url: "{{ api_uri }}/api/providers/{{ provider_id }}"
 
     - name: Set the Service URL
       set_fact:
-        svc_url: "/api/{{ manageiq.service }}"
+        svc_url: "/api/services/{{ service_id }}"
 
     - debug: var=svc_url
 
@@ -85,7 +81,7 @@
         body_format: json
         validate_certs: False
         headers:
-          X-Auth-Token: "{{ manageiq.api_token }}"
+          X-Auth-Token: "{{ auth_token }}"
           Content-Type: "application/json" 
         status_code: 200
       register: output
@@ -101,7 +97,7 @@
         method: GET
         validate_certs: False
         headers:
-          X-Auth-Token: "{{ manageiq.api_token }}"
+          X-Auth-Token: "{{ auth_token }}"
           Content-Type: "application/json" 
         status_code: 200
       register: task_result
@@ -121,7 +117,7 @@
         method: GET
         validate_certs: no
         headers:
-           X-Auth-Token: "{{ manageiq.api_token }}"
+           X-Auth-Token: "{{ auth_token }}"
            Content-Type: "application/json"
         body_format: json
         return_content: yes
@@ -143,7 +139,7 @@
     
     - name: Register vm with the service
       uri:
-        url: "{{ manageiq.api_url }}/api/services"
+        url: "{{ api_uri }}/api/services"
         method: POST
         body_format: json
         body:
@@ -151,7 +147,7 @@
           resources : "{{ vms }}"
         validate_certs: False
         headers:
-          X-Auth-Token: "{{ manageiq.api_token }}"
+          X-Auth-Token: "{{ auth_token }}"
           Content-Type: "application/json"
         status_code: 200
       register: output
