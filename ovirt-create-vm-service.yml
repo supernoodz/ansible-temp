@@ -24,6 +24,8 @@
           accept: "application/json"
         return_content: yes
       register: manageiq
+    
+    - set_fact: manageiq="{{ manageiq.json }}"
 
     - debug: var=manageiq.api_url
     - debug: var=manageiq.api_token
