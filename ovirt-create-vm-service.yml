@@ -9,6 +9,7 @@
     retry_interval: 20
 
   tasks:
+    - debug: var=manageiq
     - debug: var=vm_name
     - debug: var=vm_template
     - debug: var=cluster
