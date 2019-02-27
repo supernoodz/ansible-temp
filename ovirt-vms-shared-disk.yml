@@ -21,7 +21,7 @@
           wait: true
 
       - name: Create first VM
-        ovirt_vms:
+        ovirt_vm:
           auth: "{{ ovirt_auth }}"
           state: present
           name: "{{ prefix }}_1"
@@ -29,7 +29,7 @@
           cluster: "{{ cluster }}"
 
       - name: Create second VM
-        ovirt_vms:
+        ovirt_vm:
           auth: "{{ ovirt_auth }}"
           state: present
           name: "{{ prefix }}_2"

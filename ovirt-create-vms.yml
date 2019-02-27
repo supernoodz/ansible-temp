@@ -10,7 +10,7 @@
           insecure: true
 
       - name: Create VM
-        ovirt_vms:
+        ovirt_vm:
           auth: "{{ ovirt_auth }}"
           state: present
           name: "{{ vm_name }}"
