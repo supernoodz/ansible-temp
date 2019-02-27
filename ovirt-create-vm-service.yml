@@ -4,7 +4,7 @@
   connection: local
 
   vars:
-    provider_id: "21000000000002"
+    # provider_id: "21000000000002"
     max_retries: 9
     retry_interval: 20
     vm_name: test003
@@ -40,6 +40,8 @@
     - name: Set the Provider URL
       set_fact:
         provider_url: "{{ api_uri }}/api/providers/{{ provider_id }}"
+
+    - debug: var=provider_url
 
     - name: Set the Service URL
       set_fact:
