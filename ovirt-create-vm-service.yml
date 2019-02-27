@@ -23,9 +23,9 @@
         headers:
           accept: "application/json"
         return_content: yes
-      register: token_output
+      register: uri_output
     
-    - set_fact: manageiq="{{ token_output.json }}"
+    - set_fact: manageiq="{{ uri_output.json }}"
 
     - debug: var=manageiq
 
