@@ -10,7 +10,7 @@
     vm_name: test003
     vm_template: RHEL6
     cluster: Default
-    api_uri: https://cf46ui/api
+    api_uri: https://cf46ui
     cf_user: admin
     cf_pw: r3dh4t1!
     ovirt_url: https://rhvm.example.com/ovirt-engine/api
