@@ -9,12 +9,16 @@
 
   tasks:
     - debug: var=service_id
+    - debug: var=cf_user
+    - debug: var=cf_pw
 
     - name: Get CloudForms auth_token
       uri:
         url: "{{ api_uri }}/api/auth"
         method: GET
         validate_certs: no
+        user: "{{ cf_user }}"
+        password: "{{ cf_pw }}"
         headers:
           accept: "application/json"
         return_content: yes
